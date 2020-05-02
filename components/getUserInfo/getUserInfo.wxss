@@ -1,0 +1,90 @@
+.authorize {
+  background-color: #fefffe;
+}
+
+.au-head {
+  margin-top: 20rpx;
+  display: flex;
+}
+
+.mini-name {
+  font-weight: bold;
+  font-size: 35rpx;
+  margin: auto 0;
+}
+
+.mini-get {
+  font-size: 33rpx;
+  margin: auto 20rpx;
+}
+
+.mini-image {
+  width: 70rpx;
+  height: 70rpx;
+  margin: auto 16rpx;
+  border-radius: 50%;
+}
+
+.au-get {
+  font-size: 40rpx;
+  font-weight: bold;
+  margin: 20rpx;
+}
+
+.au-user {
+  height: 140rpx;
+  border-top: 1rpx solid #d4d4d4;
+  border-bottom: 1rpx solid #d4d4d4;
+  margin: 10rpx;
+  display: flex;
+}
+
+.user-image {
+  margin: 10rpx;
+  width: 120rpx;
+  height: 120rpx;
+}
+
+.au-info {
+  width: 470rpx;
+  margin: 10rpx;
+  display: flex;
+  flex-direction: column;
+}
+
+.au-name {
+  padding-left: 10rpx;
+}
+
+.au-text {
+  font-size: 36rpx;
+  color: #c5c6c5;
+  margin-top: 10rpx;
+  padding-left: 10rpx;
+}
+
+.au-right {
+  width: 40rpx;
+  height: 40rpx;
+  margin: auto 0;
+}
+
+.au-change {
+  color: #8291af;
+  font-size: 36rpx;
+  margin: 10rpx;
+}
+
+.au-btn {
+  margin-top: 40rpx;
+  display: flex;
+}
+
+.au-btn button {
+  width: 300rpx;
+}
+
+.refuse-btn {
+  background-color: #ededed;
+  color: #68c997;
+}

@@ -1,0 +1,19 @@
+<view hidden="{{currentTab == 0? false: true}}">
+  <!-- <home/> -->
+</view>
+<view hidden="{{currentTab == 1? false: true}}">
+  <!-- <add_btn /> -->
+</view>
+<view hidden="{{currentTab == 2? false: true}}">
+  <!-- <trace /> -->
+</view>
+<!--<authorize id="authorize" childAttr="{{hidden}}" syncAttrMap="childAttr=parentAttr" bind:syncAttrUpdate="onSyncAttrUpdate"></authorize>-->
+<view class="nav-tabs" hidden="{{hidden}}">
+  <view class="tab-list {{currentTab == idx ? 'active' : 'default' }}" wx:for="{{items}}" wx:key="prototype" wx:for-index="idx" wx:for-item="item" data-current="{{idx}}" bindtap="swichNav">
+    <text class="tab-text" wx:for-index="idx" data-current="{{idx}}" src="{{currentTab == idx ? item.selectedIconPath : item.iconPath }}" style="{{currentTab == idx ?  'color:#fd79a8' : '' }}">
+      {{item.text}}
+    </text>
+    <image class="iconPath" wx:for-index="idx" data-current="{{idx}}" src="{{currentTab == idx ? item.selectedIconPath : item.iconPath }}"></image>
+  </view>
+  <image class="add-btn" src="/assets/add/add.svg" mode="widthFix" bind:tap="addTask" bindhide="hideIndex"  open-type="getUserInfo" lang="zh_CN" bindgetuserinfo="bindGetUserInfo"/>
+</view>
