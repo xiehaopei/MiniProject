@@ -1,5 +1,5 @@
 {
   "usingComponents": {
-    "authorize": "/components/authorize/authorize"
+    "addTask": "/components/addTask/addTask"
   }
 }

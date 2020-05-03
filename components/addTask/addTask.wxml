@@ -1,6 +1,6 @@
 <view class="modals">
   <view class="mask" bindtap="hideModal" animation="{{animationMask}}"></view>
   <view class="content bottom-pos" animation="{{animationData}}">
-    <getUserInfo bind:callHidden="callHidden"></getUserInfo>
+    <!--<getUserInfo bind:callHidden="callHidden"></getUserInfo>-->
   </view>
 </view>
