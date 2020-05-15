@@ -1,6 +1,6 @@
 <view class="modals">
-  <view class="mask" bindtap="hideModal" animation="{{animationMask}}"></view>
-  <view class="content bottom-pos" animation="{{animationData}}">
-    <!--<getUserInfo bind:callHidden="callHidden"></getUserInfo>-->
+  <view class="mask" style="z-index={{zindex}}" bindtap="hideModal" animation="{{animationMask}}"></view>
+  <view class="content bottom-pos"  style="z-index={{zindex}}" animation="{{animationData}}">
+    <addTaskInfo bind:callHidden="callHidden" bind:moveUp="moveUp" wx-if="{{refresh}}"></addTaskInfo>
   </view>
 </view>

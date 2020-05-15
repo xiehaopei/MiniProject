@@ -11,7 +11,6 @@ page {
   position: fixed;
   bottom: 0;
   box-shadow: 0 -6rpx rgba(30, 30, 30, .04);
-  z-index: 1005;
 }
 
 .tab-list {

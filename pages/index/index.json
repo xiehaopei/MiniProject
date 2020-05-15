@@ -1,5 +1,7 @@
 {
   "usingComponents": {
-    "addTask": "/components/addTask/addTask"
+    "addTask": "/components/addTask/addTask",
+    "x-taskList": "/components/x-taskList/x-taskList",
+    "goTop": "/components/goTop/goTop"
   }
 }

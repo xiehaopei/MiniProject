@@ -8,7 +8,9 @@ Component({
   },
   data: {
     animationData: {}, //内容动画
-    animationMask: {} //蒙板动画
+    animationMask: {}, //蒙板动画
+    refresh: true, //更多设置按钮
+    zindex: 1000 //z-index设置
   },
   methods: {
     // 子组件更新数据时，只要调用此方法即可，而不是 `setData`
@@ -26,10 +28,13 @@ Component({
       })
       this.childAttr = true
       this.setDataSmart(this.childAttr)
+      this.setData({
+        refresh: true,
+      })
     },
     // 隐藏
     hideModal: function () {
-      this.animateTrans.translateY(300).step()
+      this.animateTrans.height("200rpx").step()
       this.animateFade.opacity(0).step()
       this.setData({
         animationData: this.animateTrans.export(),
@@ -37,11 +42,23 @@ Component({
       })
       this.childAttr = false
       this.setDataSmart(this.childAttr)
+      this.setData({
+        refresh: false,
+      })
     },
     //调用隐藏方法
     callHidden() {
       console.log("-----------");
       this.hideModal()
+    },
+    //向上移动
+    moveUp() {
+      console.log('up')
+      this.animateTrans.height("800rpx").step()
+      this.setData({
+        animationData: this.animateTrans.export()
+      })
+
     }
   },
 

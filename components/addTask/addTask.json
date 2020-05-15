@@ -1,6 +1,6 @@
 {
   "component": true,
   "usingComponents": {
-    "getUserInfo": "/components/getUserInfo/getUserInfo"
+    "addTaskInfo": "/components/addTaskInfo/addTaskInfo"
   }
 }

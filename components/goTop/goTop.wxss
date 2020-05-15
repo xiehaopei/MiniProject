@@ -1,0 +1,11 @@
+/* 返回顶部 */
+.goTop {
+  height: 84rpx;
+  width: 84rpx;
+  position: fixed;
+  bottom: 200rpx;
+  background: rgba(255, 255, 255, .3);
+  right: 100rpx;
+  border-radius: 50%;
+  box-shadow:0rpx 0rpx 8rpx #707070;
+}

@@ -1,0 +1,2 @@
+<image class="icon" wx:if="{{hasFinish}}" catch:tap="changeIcon" src="/assets/check/certificate.svg" mode="widthFix" />
+<image class="icon" wx:if="{{!hasFinish}}" catch:tap="changeIcon" src="{{image}}" mode="widthFix" />

@@ -1,25 +1,25 @@
-import {
-  login
-} from "../../service/login";
+import login from "../../service/login";
+import addUserInfo from "../../service/addUserInfo";
 
 let app = getApp();
-
 
 Page({
   data: {
     currentTab: 0,
     items: [{
-        iconPath: "/assets/tab_control/home.png",
-        selectedIconPath: "/assets/tab_control/home_active.png",
+        iconPath: "/assets/tab_control/home.svg",
+        selectedIconPath: "/assets/tab_control/home_active.svg",
         text: "首页",
       },
       {
-        iconPath: "/assets/tab_control/track.png",
-        selectedIconPath: "/assets/tab_control/track_active.png",
-        text: "足迹",
+        iconPath: "/assets/tab_control/data.svg",
+        selectedIconPath: "/assets/tab_control/data_active.svg",
+        text: "数据",
       },
     ],
     hidden: false,
+    disBtn: false,
+    goTop: false
   },
   //页面切换
   swichNav: function (e) {
@@ -39,7 +39,9 @@ Page({
     wx.getSetting({
       success: function (res) {
         if (res.authSetting["scope.userInfo"]) {
-          console.log("1111111111111");
+          that.setData({
+            hidden: true
+          })
           that.btnClick = that.selectComponent('#addTask');
           that.btnClick.showModal();
         }
@@ -53,28 +55,14 @@ Page({
       // 获取到用户的信息了，打印到控制台上看下
       console.log("用户的信息如下：");
       console.log(e.detail.userInfo);
-      /*在此发送请求将用户数据发送到数据库中
-        wx.request({
-          url: app.globalData.urlPath + 'user/add',
-          data: {
-            openid: getApp().globalData.openid,
-            nickName: e.detail.userInfo.nickName,
-            avatarUrl: e.detail.userInfo.avatarUrl,
-            province: e.detail.userInfo.province,
-            city: e.detail.userInfo.city
-          },
-          header: {
-            'content-type': 'application/json'
-          },
-          success: function (res) {
-            //从数据库获取用户信息
-            that.queryUsreInfo();
-            console.log("插入小程序登录用户信息成功！");
-          }
-        });
-        //login();
-      */
+      //发出请求将用户数据存储进数据库
+      addUserInfo(e.detail.userInfo, app.globalData.openid)
+      //使添加任务页面显现
       this.addTask();
+      //设置授权按钮不可用
+      this.setData({
+        disBtn: true
+      })
     } else {
       //用户按了拒绝授权按钮
       wx.showModal({
@@ -91,22 +79,6 @@ Page({
       });
     }
   },
-  /*获取用户信息接口
-  queryUsreInfo: function () {
-    wx.request({
-      url: app.globalData.urlPath + 'user/userInfo',
-      data: {
-        openid: app.globalData.openid
-      },
-      header: {
-        'content-type': 'application/json'
-      },
-      success: function (res) {
-        console.log(res.data);
-        getApp().globalData.userInfo = res.data;
-      }
-    })
-  },*/
   //监听隐藏任务添加窗口参数变化
   onSyncAttrUpdate(e) {
     console.log('-----------', e.detail)
@@ -114,27 +86,53 @@ Page({
       hidden: e.detail
     })
   },
+  //监听页面滚动
+  onPageScroll(e) {
+    //参数e会返回滚动条滚动的高度
+    if (e.scrollTop > 150) {
+      this.setData({
+        goTop: true
+      })
+    } else {
+      this.setData({
+        goTop: false
+      })
+    }
+  },
+  //获取时间并存为全局变量
+  getDate() {
+    let date = new Date()
+    let year = date.getFullYear(),
+      month = date.getMonth() + 1,
+      day = date.getDate();
+    let dateStr = [year, month, day].join('-');
+    app.globalData.date = dateStr;
+    wx.setStorage({
+      key: 'date',
+      data: dateStr
+    })
+  },
   onLoad: function () {
     let that = this;
-    /*app.getUserInfo(function (userInfo) {
-      that.setData({
-        userInfo: userInfo
+    //获取时间
+    this.getDate();
+    //登录并获取任务列表
+    login
+      .then(res => console.log('--------------'))
+      .catch(err => {
+        console.log(err)
       })
-    })*/
-    // 查看是否授权
+    // 查看是否授权,已授权则设置授权按钮无效
     wx.getSetting({
       success: function (res) {
         if (res.authSetting["scope.userInfo"]) {
-          console.log("===========");
           wx.getUserInfo({
             success: function (res) {
-              login();
-              //已授权进行下一步操作
+              that.setData({
+                disBtn: true
+              })
             },
           });
-        } else {
-          // 用户没有授权，显示授权弹窗
-
         }
       },
     })

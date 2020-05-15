@@ -1,0 +1,28 @@
+.unfinish {
+  height: 50rpx;
+  background-color: #dcdcdc;
+  padding: 5rpx 20rpx 5rpx;
+  font-size: 34rpx;
+  margin-bottom: 20rpx;
+}
+
+.task-card {
+  margin: 0 20rpx;
+  border: 1rpx solid #dddddd;
+  border-radius: 20rpx;
+  box-shadow: 2rpx 2rpx 2rpx 2rpx #d4d4d4;
+}
+
+.task_item {
+  height: 100rpx;
+  position: relative;
+  border-bottom: 1rpx solid #dddddd;
+}
+
+.item_contain {
+  height: 100rpx;
+  font-size: 40rpx;
+  position: absolute;
+  left: 100rpx;
+  top: 25rpx;
+}

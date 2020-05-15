@@ -1,0 +1,2 @@
+<!-- 回顶部 -->
+<image src='/assets/goTop/top.svg' class='goTop' wx-if="{{goTop}}" bindtap="goTop"></image>

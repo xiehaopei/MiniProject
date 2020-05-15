@@ -1,0 +1,9 @@
+<view class="unfinish">进行中</view>
+<view class="task-card">
+  <block wx:for="{{tasks}}" wx:key='id' wx:for-item='item'>
+    <view class="task_item " data-priority="{{item.priority}}">
+      <view class="item_contain">{{item.name}}</view>
+      <check priority="{{item.priority}}" type="{{item.type}}" ></check>
+    </view>
+  </block>
+</view>
