@@ -107,7 +107,7 @@ Component({
             openid: app.globalData.openid,
             priority: e.detail.value.priority,
             type: 0,
-          }) 
+          })
           //push无法做到动态刷新，以此方法触发get方法来代替
           app.globalData.task = app.globalData.task;
           this.triggerEvent('callHidden', '');
