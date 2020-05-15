@@ -1,5 +1,8 @@
 import login from "../../service/login";
 import addUserInfo from "../../service/addUserInfo";
+import {
+  getTask
+} from '../../service/getTask.js'
 
 let app = getApp();
 
@@ -118,7 +121,14 @@ Page({
     this.getDate();
     //登录并获取任务列表
     login
-      .then(res => console.log('--------------'))
+      .then(res => {
+        getTask(0).then((res) => {
+              console.log(res);
+              app.globalData.task = res.data.data;
+            },
+            console.log('任务列表更新')
+          )
+      })
       .catch(err => {
         console.log(err)
       })

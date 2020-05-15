@@ -3,9 +3,7 @@ import request from "../../service/post.js";
 import {
   login
 } from "../../service/login.js";
-import {
-  getTask
-} from '../../service/getTask.js'
+
 
 let app = getApp();
 
@@ -18,29 +16,28 @@ Component({
     },
   },
   data: {
-    unfinish_tasks: [],
+    tasks: [],
     time: [],
   },
-  methods: {},
+  methods: {
+    //全局变量监听函数,第一个参数为变量，第二个参数为当前对象
+    watchBack(task,that){
+      console.log('监听到任务列表变化');
+      that.setData({
+        tasks: task
+      })
+    }
+  },
   created: function () {
-
+    let that = this;
+    //对任务列表变化进行监听
+    getApp().watch(that.watchBack , that);
   },
   attached: function () {
 
   },
   ready: function () {
-    setTimeout(() => {
-      console.log('取出', app.globalData.openid)
-      getTask(0).then((res) => {
-          console.log(res);
-          this.setData({
-            unfinish_tasks: res.data.data
-          })
-        })
-        .catch((res) => {
-          console.log("请求失败");
-        });
-    }, 800);
+
   },
   moved: function () {},
   detached: function () {},

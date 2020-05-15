@@ -99,6 +99,17 @@ Component({
             priority: e.detail.value.priority
           }
         }).then(res => {
+          //将加入的任务添加到全局的task中
+          app.globalData._task.push({
+            day: app.globalData.date,
+            id: null,
+            name: e.detail.value.task_name,
+            openid: app.globalData.openid,
+            priority: e.detail.value.priority,
+            type: 0,
+          }) 
+          //push无法做到动态刷新，以此方法触发get方法来代替
+          app.globalData.task = app.globalData.task;
           this.triggerEvent('callHidden', '');
           wx.showToast({
             title: '创建成功',
