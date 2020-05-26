@@ -10,24 +10,19 @@ export default new Promise((resolve, reject) => {
       //发送请求
       request({
         url: 'https://www.caodalinsworld.com:8081/applet/user/getState',
-        methods: "POST",
-        header: {
-          'content-type': 'application/json'
-        },
         data: {
           code: res.code
         }
       }).then(res => {
         console.log(res)
-        // 获取到用户的 openid
-        console.log("获取到用户的openid");
+        // 获取到用户的 id
+        console.log("获取到userId");
         let app = getApp();
-        app.globalData.openid = res.data.data.openid;
+        app.globalData.userId = res.data.data.id;
         wx.setStorage({
-          key: 'openid',
-          data: res.data.data.openid
+          key: 'userId',
+          data: res.data.data.id
         })
-
         resolve()
       }).catch(err => {
         console.log(err);

@@ -1,29 +1,33 @@
 //Component Object
+let app = getApp();
+
 Component({
   properties: {
     priority: {
       type: String,
       value: '',
-      observer: function () {}
+      observer: function () {
+        this.getPriority()
+      }
     },
     type: {
       type: Number,
-      observer: function () {}
+      observer: function () {
+      }
     }
   },
   data: {
     image: '',
-    hasFinish: false //true为完成，false为未完成
+    hasFinish: "" //true为完成，false为未完成
   },
   methods: {
     //监视图标切换
     changeIcon(event) {
-      console.log(event);
-      //var index = event.currentTarget.dataset.index;
-      //var item = this.data.Tasks[index];
+      console.log('点击了图标', event);
       this.setData({
         hasFinish: !this.data.hasFinish
       })
+      this.triggerEvent('changeType', this.data.hasFinish)
     },
     //对优先度进行判断
     getPriority() {
@@ -73,6 +77,7 @@ Component({
       this.setData({
         hasFinish: true
       })
+      this.getPriority()
     }
   },
   ready: function () {

@@ -1,3 +1,14 @@
 .taskList {
   position: relative;
+  margin-bottom: 120rpx;
+}
+
+.finish-card{
+  color: #8a8a8a;
+}
+
+.no-text{
+  position: absolute;
+  top: 300rpx;
+  left: 150rpx;
 }

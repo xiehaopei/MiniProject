@@ -1,9 +1,12 @@
-<view class="unfinish">进行中</view>
-<view class="task-card">
-  <block wx:for="{{tasks}}" wx:key='id' wx:for-item='item'>
-    <view class="task_item " data-priority="{{item.priority}}">
+<view class="unfinish" bind:tap="taskListHidden">
+  <text>{{title}}</text>
+  <text>{{taskList.length}}    {{showStatu}}</text>
+</view>
+<view class="task-card" hidden="{{isTaskListHidden}}">
+  <block wx:for="{{taskList}}" wx:key='id' wx:for-item='item'>
+    <view class="task_item " data-item="{{item}}" bind:tap="showTaskDetail">
       <view class="item_contain">{{item.name}}</view>
-      <check priority="{{item.priority}}" type="{{item.type}}" ></check>
+      <check priority="{{item.priority}}" type="{{item.type}}" data-item="{{item}}" bind:changeType="changeType"></check>
     </view>
   </block>
 </view>

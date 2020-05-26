@@ -1,5 +1,8 @@
 //Component Object
 import request from "../../service/post";
+import {
+  addTask
+} from "../../service/addTask";
 let app = getApp();
 
 Component({
@@ -81,32 +84,29 @@ Component({
     //表单提交事件
     formSubmit: function (e) {
       console.log(e);
+      let priority = e.detail.value.priority;
+      if (priority === undefined) {
+        priority = 0
+      }
       if (e.detail.value.task_name === '') {
         console.log('未填写任务名称');
+        wx.showToast({
+          title: '请填写任务名称',
+          icon: 'none',
+          image: '',
+          duration: 400,
+          mask: true,
+        });
       } else {
-        request({
-          url: 'https://www.caodalinsworld.com:8081/applet/task/add.do',
-          methods: "POST",
-          header: {
-            'content-type': 'application/json'
-          },
-          data: {
-            openid: app.globalData.openid,
-            type: 0,
-            day: app.globalData.date,
-            name: e.detail.value.task_name,
-            description: e.detail.value.description,
-            priority: e.detail.value.priority
-          }
-        }).then(res => {
+        addTask(e, priority).then((res) => {
           //将加入的任务添加到全局的task中
           app.globalData._task.push({
             day: app.globalData.date,
-            id: null,
+            id: res.data.data.id,
             name: e.detail.value.task_name,
-            openid: app.globalData.openid,
-            priority: e.detail.value.priority,
-            type: 0,
+            userId: app.globalData.userId,
+            priority: priority,
+            type: 0
           })
           //push无法做到动态刷新，以此方法触发get方法来代替
           app.globalData.task = app.globalData.task;
@@ -126,9 +126,9 @@ Component({
         })
       }
     },
-    //表单重置事件
-    formReset: function (e) {
-
+    //取消添加
+    cancelAdd(){
+      this.triggerEvent('callHidden', '')
     },
     translateBtn: function () {
       this.animationMove.translateX(100).step()

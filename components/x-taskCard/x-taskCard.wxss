@@ -4,6 +4,9 @@
   padding: 5rpx 20rpx 5rpx;
   font-size: 34rpx;
   margin-bottom: 20rpx;
+  color: #2c2c2c;
+  display: flex;
+  justify-content: space-between;
 }
 
 .task-card {
@@ -11,6 +14,7 @@
   border: 1rpx solid #dddddd;
   border-radius: 20rpx;
   box-shadow: 2rpx 2rpx 2rpx 2rpx #d4d4d4;
+  margin-bottom: 20rpx;
 }
 
 .task_item {
@@ -21,8 +25,12 @@
 
 .item_contain {
   height: 100rpx;
+  width: 560rpx;
   font-size: 40rpx;
   position: absolute;
   left: 100rpx;
   top: 25rpx;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  overflow: hidden;
 }

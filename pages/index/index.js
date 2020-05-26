@@ -123,11 +123,25 @@ Page({
     login
       .then(res => {
         getTask(0).then((res) => {
-              console.log(res);
+            console.log(res);
+            if (res.data.data) {
               app.globalData.task = res.data.data;
-            },
-            console.log('任务列表更新')
-          )
+            } else {
+              app.globalData.task = [];
+            }
+          },
+          console.log('更新未完成任务列表')
+        )
+        getTask(1).then((res) => {
+            console.log(res);
+            if (res.data.data) {
+              app.globalData.finish_task = res.data.data;
+            } else {
+              app.globalData.finish_task = [];
+            }
+          },
+          console.log('更新已完成任务列表')
+        )
       })
       .catch(err => {
         console.log(err)
@@ -147,10 +161,11 @@ Page({
       },
     })
   },
+  //分享设置
   onShareAppMessage: function () {
     return {
-      title: '我的小程序',
-      path: '/pages/index/index',
+      title: '简A笔记',
+      path: '/assets/icon/简A笔记.png',
       imageUrl: '显示的图片，默认为当前页面的截图',
       success: function (shareTickets) {
         console.info(shareTickets + '成功');

@@ -1,12 +1,14 @@
 <view class="addTaskInfo">
-  <form class="addTaskForm" bindsubmit="formSubmit" bindreset="formReset">
+  <form class="addTaskForm" bindsubmit="formSubmit">
     <view class="add-input">
-      <input name="task_name" type="text" class="task-name" placeholder="准备做什么？" maxlength="20"  focus="{{getFocus}} "></input>
+      <input name="task_name" type="text" class="task-name" placeholder="准备做什么？" maxlength="20" focus="{{getFocus}} "></input>
       <button formType="submit" type="primary" size="mini" class="add-btn" wx:if="{{more}}" animation="{{animationBtn}}">
-        <text>Add</text>
+        <text class="add-btn-text">Add</text>
       </button>
     </view>
-    <view bind:tap="showMore" class="more-setting" wx:if="{{more}}" animation="{{animationSet}}">更多设置</view>
+    <view bind:tap="showMore" class="more-setting" wx:if="{{more}}" animation="{{animationSet}}">
+      更多设置
+    </view>
     <view class="more-task" wx:if="{{!more}}">
       <view class="taskItem">
         <label>是否设置为每日任务：</label>
@@ -25,11 +27,11 @@
       </view>
       <view class="textAreaItem">
         <label>任务描述：</label>
-        <textarea class="taskDescription" name="description" placeholder="任务描述(0-300个字符)" maxlength="300"></textarea>
+        <textarea class="taskDescription" name="description" placeholder="任务描述(0-300个字符)" maxlength="300" ></textarea>
       </view>
       <view class="btn-area">
-        <button formType="reset" class="reset" size="mini">Reset</button>
-        <button formType="submit" class="submit" size="mini" type="primary">Add</button>
+        <button class="btn-button cancel" size="mini" bind:tap="cancelAdd">Cancel</button>
+        <button formType="submit" class="btn-button" size="mini" type="primary">Add</button>
       </view>
     </view>
   </form>

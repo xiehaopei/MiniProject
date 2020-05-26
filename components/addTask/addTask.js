@@ -48,7 +48,6 @@ Component({
     },
     //调用隐藏方法
     callHidden() {
-      console.log("-----------");
       this.hideModal()
     },
     //向上移动
