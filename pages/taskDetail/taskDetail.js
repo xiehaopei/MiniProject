@@ -38,6 +38,9 @@ Page({
   //options(Object)
   onLoad: function (options) {
     let item = JSON.parse(options.item)
+    if (!item.description) {
+      item.description = ''
+    }
     this.setData({
       taskInfo: item,
       priorityIndex: item.priority,

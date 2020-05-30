@@ -7,5 +7,5 @@
   background: rgba(255, 255, 255, .3);
   right: 100rpx;
   border-radius: 50%;
-  box-shadow:0rpx 0rpx 8rpx #707070;
+  box-shadow: 0rpx 0rpx 8rpx #707070;
 }

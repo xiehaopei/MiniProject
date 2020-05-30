@@ -1,5 +1,5 @@
-<view class="taskList">
+<view class="taskList" >
   <view class="no-text" hidden="{{isShow}}">There is no task right now</view>
-  <x-taskCard taskList="{{tasks}}" title="进行中" wx:if="{{task_length}}"></x-taskCard>
-  <x-taskCard class="finish-card" taskList="{{finish_tasks}}" title="已完成" wx:if="{{finish_task_length}}"></x-taskCard>
+  <x-taskCard taskList="{{tasks}}" title="进行中" wx:if="{{task_length}}" indexShow="{{indexShow}}"></x-taskCard>
+  <x-taskCard class="finish-card" taskList="{{finish_tasks}}" title="已完成" wx:if="{{finish_task_length}}"  indexShow="{{indexShow}}"></x-taskCard>
 </view>

@@ -4,7 +4,7 @@ import {
   getTask
 } from '../../service/getTask.js'
 
-let app = getApp();
+let app = getApp()
 
 Page({
   data: {
@@ -22,7 +22,10 @@ Page({
     ],
     hidden: false,
     disBtn: false,
-    goTop: false
+    goTop: false,
+    indexShow: true,
+    tabIndex: 10,
+    topIndex: 1
   },
   //页面切换
   swichNav: function (e) {
@@ -84,30 +87,45 @@ Page({
   },
   //监听隐藏任务添加窗口参数变化
   onSyncAttrUpdate(e) {
-    console.log('-----------', e.detail)
+    console.log('-----------', e.detail, )
     this.setData({
       hidden: e.detail
     })
+    if (this.data.hidden) {
+      this.setData({
+        indexShow: false,
+        topIndex: 0
+      })
+    } else {
+      this.setData({
+        indexShow: true,
+        topIndex: 1
+      })
+    }
   },
   //监听页面滚动
   onPageScroll(e) {
     //参数e会返回滚动条滚动的高度
     if (e.scrollTop > 150) {
-      this.setData({
-        goTop: true
-      })
+      if (!this.data.goTop) {
+        this.setData({
+          goTop: true
+        })
+      }
     } else {
-      this.setData({
-        goTop: false
-      })
+      if (this.data.goTop) {
+        this.setData({
+          goTop: false
+        })
+      }
     }
   },
   //获取时间并存为全局变量
   getDate() {
     let date = new Date()
     let year = date.getFullYear(),
-      month = date.getMonth() + 1,
-      day = date.getDate();
+      month = (date.getMonth() + 1 + '').padStart(2, '0'),
+      day = (date.getDate() + '').padStart(2, '0');
     let dateStr = [year, month, day].join('-');
     app.globalData.date = dateStr;
     wx.setStorage({

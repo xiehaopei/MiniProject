@@ -3,7 +3,11 @@ Component({
     goTop: {
       type: Boolean,
       value: false
-    }
+    },
+    topIndex: {
+      type: Number,
+      value: 1
+    },
   },
   data: {
     

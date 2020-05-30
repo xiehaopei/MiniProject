@@ -3,10 +3,24 @@
   <text>{{taskList.length}}    {{showStatu}}</text>
 </view>
 <view class="task-card" hidden="{{isTaskListHidden}}">
-  <block wx:for="{{taskList}}" wx:key='id' wx:for-item='item'>
-    <view class="task_item " data-item="{{item}}" bind:tap="showTaskDetail">
-      <view class="item_contain">{{item.name}}</view>
-      <check priority="{{item.priority}}" type="{{item.type}}" data-item="{{item}}" bind:changeType="changeType"></check>
+  <block wx:for="{{taskList}}" wx:key='id' wx:for-item='item' wx:for-index='index'>
+    <view class="product-item">
+      <movable-area class="movable-area" data-item="{{item}}" bind:tap="showTaskDetail">
+        <movable-view class="movable-view" out-of-bounds="true" direction="horizontal" x="{{item.xmove}}" inertia="true" data-index="{{index}}" bindtouchstart="handleTouchStart" bindtouchend="handleTouchEnd" bindchange="handleMovableChange" style="z-index:{{viewIndex}}">
+          <view class="product-item-wrap">
+            <view class="product-movable-item">
+              <view class="product-movable-item-name">{{item.name}}</view>
+              <check priority="{{item.priority}}" type="{{item.type}}" data-item="{{item}}" bind:changeType="changeType"></check>
+            </view>
+          </view>
+        </movable-view>
+      </movable-area>
+      <view class="edit-btn" data-item="{{item}}" data-index="{{index}}" bindtap="handleEditProduct" style="z-index:{{btnIndex}}">
+        编辑
+      </view>
+      <view class="delete-btn" data-id="{{item.id}}" bindtap="handleDeleteProduct" style="z-index:{{btnIndex}}">
+        删除
+      </view>
     </view>
   </block>
 </view>

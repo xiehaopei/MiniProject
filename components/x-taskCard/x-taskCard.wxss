@@ -10,27 +10,80 @@
 }
 
 .task-card {
-  margin: 0 20rpx;
+  margin: 0 1rpx;
   border: 1rpx solid #dddddd;
   border-radius: 20rpx;
-  box-shadow: 2rpx 2rpx 2rpx 2rpx #d4d4d4;
   margin-bottom: 20rpx;
 }
 
-.task_item {
-  height: 100rpx;
+.product-item {
   position: relative;
-  border-bottom: 1rpx solid #dddddd;
+  width: 100vw;
+  box-sizing: border-box;
+  background: #fff;
+  border-bottom: 3rpx solid #dddddd;
+  margin-bottom: 2rpx;
 }
 
-.item_contain {
+.movable-area {
   height: 100rpx;
+  width: calc(100vw - 240rpx);
+}
+
+.movable-view {
+  height: 100rpx;
+  width: 100vw;
+  background: #fff;
+}
+
+.edit-btn {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  right: 120rpx;
+  width: 120rpx;
+  font-family: PingFangSC-Regular;
+  font-size: 30rpx;
+  color: #FFFFFF;
+  line-height: 100rpx;
+  background: #f1c40f;
+  text-align: center;
+}
+
+.delete-btn {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  right: 0;
+  width: 120rpx;
+  font-family: PingFangSC-Regular;
+  font-size: 30rpx;
+  color: #FFFFFF;
+  line-height: 100rpx;
+  background: #E66671;
+  text-align: center;
+}
+
+.product-item-wrap {
+  position: relative;
+  display: flex;
+  align-items: center;
+  box-sizing: border-box;
+}
+
+.product-movable-item {
+  flex: 1;
+  overflow: hidden;
+}
+
+.product-movable-item-name {
+  font-family: PingFangSC-Regular;
+  height: 100rpx;
+  line-height: 100rpx;
   width: 560rpx;
   font-size: 40rpx;
   position: absolute;
   left: 100rpx;
-  top: 25rpx;
   text-overflow: ellipsis;
   white-space: nowrap;
-  overflow: hidden;
 }

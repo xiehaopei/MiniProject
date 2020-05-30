@@ -8,14 +8,22 @@ import {
 let app = getApp();
 
 Component({
-  properties: {},
+  properties: {
+    indexShow: {
+      type: Boolean,
+      value: true,
+      observer: function () {
+        
+      },
+    }
+  },
   data: {
     tasks: [],
     finish_tasks: [],
     time: [],
     task_length: 0,
     finish_task_length: 0,
-    isShow: true
+    isShow: true,
   },
   methods: {
     //全局变量监听函数,用于监听未完成任务列表变化，第一个参数为变量，第二个参数为当前对象
@@ -55,7 +63,7 @@ Component({
       that.isShow()
     },
     isShow() {
-      if (this.data.task_length === 0 && this.data.finish_task_length === 0) {     
+      if (this.data.task_length === 0 && this.data.finish_task_length === 0) {
         this.setData({
           isShow: false
         })

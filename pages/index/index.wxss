@@ -20,6 +20,7 @@ page {
   justify-content: center;
   flex-direction: column-reverse;
   background: #fcfcfc;
+  padding-bottom: env(safe-area-inset-bottom);
 }
 
 .tab-text {

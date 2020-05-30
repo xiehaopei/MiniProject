@@ -3,11 +3,11 @@
   margin-bottom: 120rpx;
 }
 
-.finish-card{
+.finish-card {
   color: #8a8a8a;
 }
 
-.no-text{
+.no-text {
   position: absolute;
   top: 300rpx;
   left: 150rpx;

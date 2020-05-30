@@ -10,7 +10,7 @@ Component({
     animationData: {}, //内容动画
     animationMask: {}, //蒙板动画
     refresh: true, //更多设置按钮
-    zindex: 1000 //z-index设置
+    zindex: 1001 //z-index设置
   },
   methods: {
     // 子组件更新数据时，只要调用此方法即可，而不是 `setData`

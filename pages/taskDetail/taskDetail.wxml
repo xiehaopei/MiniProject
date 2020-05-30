@@ -25,8 +25,8 @@
       <textarea class="taskDescription" name="description" placeholder="任务描述(0-300个字符)" maxlength="300" value="{{textAreaContent}}"></textarea>
     </view>
     <view class="btn-area">
-      <button class="btn-button cancel" bind:tap="backHome" size="mini">back</button>
-      <button formType="submit" class="btn-button" size="mini" type="primary">Add</button>
+      <button class="btn-button cancel" bind:tap="backHome" size="mini">Cancel</button>
+      <button formType="submit" class="btn-button" size="mini" type="primary">Confirm</button>
     </view>
   </form>
 </view>
