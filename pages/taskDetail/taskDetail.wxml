@@ -5,7 +5,7 @@
       <label>任务名称：</label>
       <input name="task_name" type="text" class="task-name" placeholder="准备做什么？" maxlength="20" value="{{taskInfo.name}}"></input>
     </view>
-    <view class="taskItem">
+    <!-- <view class="taskItem">
       <label>是否设置为每日任务：</label>
       <radio-group id="radio-group" bindchange="radioChange">
         <label class="radio" wx:for="{{items}}" wx:key="this">
@@ -13,7 +13,7 @@
           {{item.value}}
         </label>
       </radio-group>
-    </view>
+    </view> -->
     <view class="taskItem">
       <label for="selector">重要程度：</label>
       <picker class="selector" name="priority" mode="selector" range="{{priority}}" value="{{priorityInde}}" bindchange="changePriority" style="color:{{itemColor}}">
