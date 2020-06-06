@@ -18,7 +18,7 @@
       <view class="edit-btn" data-item="{{item}}" data-index="{{index}}" bindtap="handleEditProduct" style="z-index:{{btnIndex}}">
         编辑
       </view>
-      <view class="delete-btn" data-id="{{item.id}}" bindtap="handleDeleteProduct" style="z-index:{{btnIndex}}">
+      <view class="delete-btn" data-id="{{item.id}}" data-type="{{item.type}}" bindtap="handleDeleteProduct" style="z-index:{{btnIndex}}">
         删除
       </view>
     </view>

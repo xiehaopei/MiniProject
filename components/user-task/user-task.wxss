@@ -1,0 +1,37 @@
+.user-task {
+  height: 260rpx;
+  border: 10rpx solid #dddddd;
+  margin: 10rpx;
+  display: flex;
+  justify-content: space-between;
+}
+
+.user-left {
+  position: relative;
+  left: 60rpx;
+  width: 274rpx;
+}
+
+.user-image {
+  position: absolute;
+  top: 10rpx;
+  width: 150rpx;
+  height: 150rpx;
+}
+
+.user-name {
+  position: absolute;
+  top: 170rpx;
+  font-size: 40rpx;
+  width: 150rpx;
+}
+
+.user-right {
+  position: relative;
+  right: 30rpx;
+  width: 360rpx;
+}
+
+.user-item {
+  margin-top: 30rpx;
+}

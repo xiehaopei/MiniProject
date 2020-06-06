@@ -1,0 +1,20 @@
+<view class="chart-box">
+  <view class="box-top">
+    <view class="btn-area">
+      <button size="mini" bindtap="last" class="btn-last">←</button>
+      <button size="mini" bindtap="next" class="btn-next">→</button>
+    </view>
+    <radio-group id="radio-group" bindchange="radioChange">
+      <text class="radio-text">记录：</text>
+      <label class="radio" wx:for="{{time}}" wx:key="this">
+        <radio value="{{item.value}}" checked="{{item.checked}}" />
+        {{item.name}}
+      </label>
+    </radio-group>
+  </view>
+  <view class="box-contain">
+    <canvas type="2d" id="myCanvas" class="canvas">
+      <ec-canvas type="2d" id="mychart-dom-bar" canvas-id="mychart-bar" ec="{{ ec }}"></ec-canvas>
+    </canvas>
+  </view>
+</view>

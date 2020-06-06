@@ -1,0 +1,38 @@
+.chart-box {
+  margin: 10rpx;
+  border: 10rpx solid #dddddd;
+  height: 700rpx;
+}
+
+.box-top {
+  height: 80rpx;
+  border-bottom: 10rpx solid #dddddd;
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+}
+
+.radio {
+  margin-left: 10rpx;
+}
+
+.btn-area {
+  display: flex;
+}
+
+.btn-last {
+  color: #45b787;
+  margin-right: 20rpx;
+  border: 1rpx solid #d4d4d4;
+}
+
+.btn-next {
+  color: #45b787;
+  border: 1rpx solid #d4d4d4;
+}
+
+.canvas {
+  margin-top: 15rpx;
+  margin-left: 30rpx;
+  height: 750rpx;
+}

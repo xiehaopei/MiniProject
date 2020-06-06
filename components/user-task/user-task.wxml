@@ -1,0 +1,11 @@
+<view class="user-task">
+  <view class="user-left">
+    <open-data type="userAvatarUrl" class="user-image"></open-data>
+    <open-data type="userNickName" class="user-name"></open-data>
+  </view>
+  <view class="user-right">
+    <view class="user-item">今日任务总数：{{tasksTotal}}</view>
+    <view class="user-item">已完成任务数：{{finishTasksTotal}}</view>
+    <view class="user-item">待完成任务数：{{unfinishTasksTotal}}</view>
+  </view>
+</view>

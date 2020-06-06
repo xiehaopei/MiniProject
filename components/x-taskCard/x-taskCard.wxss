@@ -11,7 +11,7 @@
 
 .task-card {
   margin: 0 1rpx;
-  border: 1rpx solid #dddddd;
+  border-top: 1rpx solid #dddddd;
   border-radius: 20rpx;
   margin-bottom: 20rpx;
 }
@@ -44,7 +44,7 @@
   width: 120rpx;
   font-family: PingFangSC-Regular;
   font-size: 30rpx;
-  color: #FFFFFF;
+  color: #ffffff;
   line-height: 100rpx;
   background: #f1c40f;
   text-align: center;
@@ -58,9 +58,9 @@
   width: 120rpx;
   font-family: PingFangSC-Regular;
   font-size: 30rpx;
-  color: #FFFFFF;
+  color: #ffffff;
   line-height: 100rpx;
-  background: #E66671;
+  background: #e66671;
   text-align: center;
 }
 

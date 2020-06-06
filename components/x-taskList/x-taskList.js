@@ -1,10 +1,4 @@
 //Component Object
-import request from "../../service/post.js";
-import {
-  login
-} from "../../service/login.js";
-
-
 let app = getApp();
 
 Component({
@@ -12,10 +6,8 @@ Component({
     indexShow: {
       type: Boolean,
       value: true,
-      observer: function () {
-        
-      },
-    }
+      observer: function () {},
+    },
   },
   data: {
     tasks: [],
@@ -30,49 +22,49 @@ Component({
     watchTask(task, that) {
       console.log('监听到task变化', task);
       that.setData({
-        tasks: task
-      })
+        tasks: task,
+      });
       //如果任务列表没有任务则不显示列表
       if (task.length) {
         that.setData({
-          task_length: 1
-        })
+          task_length: 1,
+        });
       } else {
         that.setData({
-          task_length: 0
-        })
+          task_length: 0,
+        });
       }
-      that.isShow()
+      that.isShow();
     },
     //全局变量监听函数,用于监听已完成任务列表变化
     watchFinishTask(finish_task, that) {
       console.log('监听到finish_task变化', finish_task);
       that.setData({
-        finish_tasks: finish_task
-      })
+        finish_tasks: finish_task,
+      });
       //如果任务列表没有任务则不显示列表
       if (finish_task.length) {
         that.setData({
-          finish_task_length: 1
-        })
+          finish_task_length: 1,
+        });
       } else {
         that.setData({
-          finish_task_length: 0
-        })
+          finish_task_length: 0,
+        });
       }
-      that.isShow()
+      that.isShow();
     },
     isShow() {
       if (this.data.task_length === 0 && this.data.finish_task_length === 0) {
         this.setData({
-          isShow: false
-        })
+          isShow: false,
+        });
       } else {
         this.setData({
-          isShow: true
-        })
+          isShow: true,
+        });
       }
-    }
+    },
   },
   created: function () {
     let that = this;
@@ -81,12 +73,8 @@ Component({
     //对已完成任务列表变化进行监听
     getApp().watch_finish_task(that.watchFinishTask, that);
   },
-  attached: function () {
-
-  },
-  ready: function () {
-
-  },
+  attached: function () {},
+  ready: function () {},
   moved: function () {},
   detached: function () {},
 });
