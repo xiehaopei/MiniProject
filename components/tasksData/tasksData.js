@@ -87,6 +87,31 @@ function setChart(list, time) {
       data: categories,
       axisLabel: {
         interval: 0,
+        formatter: function (value) {
+          let ret = ''; //拼接加\n返回的类目项
+          let maxLength = 6; //每项显示文字个数
+          let valLength = value.length; //X轴类目项的文字个数
+          let rowN = Math.ceil(valLength / maxLength); //类目项需要换行的行数
+          if (rowN > 1) {
+            //如果类目项的文字大于1,
+            for (let i = 0; i < value.length; i++) {
+              let temp = ''; //每次截取的字符串
+              // let start = i; //开始截取的位置
+              // let end; //结束截取的位置
+              if (value[i] === '日' && i !== value.length - 1) {
+                temp = value.substring(0, i + 1) + '\n';
+              }
+              if (value[i] === '至') {
+                temp = '  ' + '---' + '  \n' + value.substring(i + 1, value.length);
+              }
+              // temp = value.substring(start, end) + '\n';
+              ret += temp; //凭借最终的字符串
+            }
+            return ret;
+          } else {
+            return value;
+          }
+        },
       },
     },
     yAxis: {
