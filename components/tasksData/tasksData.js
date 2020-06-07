@@ -39,23 +39,42 @@ function initChart(canvas, width, height, dpr) {
 async function getCensus(step, size) {
   console.log('step=' + step + ' size=' + size);
   const { data: res } = await getChartData(step, size).catch(err => err);
+  wx.setStorage({
+    key: size + step,
+    data: res.data,
+  });
+  if (size === 'month') {
+    for (let key in res.data.list) {
+      console.log(key);
+    }
+  }
+  setChart(res.data.list, res.data.time);
+}
+
+//设置图表基本信息
+function setChart(list, time) {
   let arr = [];
   let categories = [];
-  let title = '';
-  let rotate;
-  for (let key in res.data) {
+  for (let key in list) {
     categories.push(key);
-    arr.push(res.data[key]);
+    arr.push(list[key]);
   }
-  title = size === 'week' ? '周' : '月';
-  rotate = size === 'week' ? 50 : 0;
   let option = {
-    color: ['#61a0a8', '#c23531'],
+    color: ['#61a0a8'],
     title: {
       textStyle: {
         color: '#61a0a8',
       },
-      text: title + '完成任务数量',
+      text: '任务统计',
+      subtext: time,
+      subtextStyle: {
+        color: '#636e72',
+        fontWeight: 400,
+        fontSize: 15,
+      },
+    },
+    grid: {
+      top: '27%',
     },
     tooltip: {
       trigger: 'axis',
@@ -68,11 +87,10 @@ async function getCensus(step, size) {
       data: categories,
       axisLabel: {
         interval: 0,
-        rotate: rotate,
       },
     },
     yAxis: {
-      name: '完成量',
+      name: '完成数',
       min: 0,
       minInterval: 1, //设置成1保证坐标轴分割刻度显示成整数。
     },
@@ -105,24 +123,61 @@ Component({
     radioChange(e) {
       let size = e.detail.value;
       this.data.size = size;
-      wx.showLoading({
-        title: '加载中...',
-      });
-      getCensus(0, size);
-      wx.hideLoading();
+      try {
+        let data = wx.getStorageSync(size + '0');
+        if (data) {
+          setChart(data.list, data.time);
+        } else {
+          wx.showLoading({
+            title: '加载中...',
+          });
+          getCensus(0, size);
+          wx.hideLoading();
+        }
+      } catch (e) {
+        console.log(e);
+      }
     },
     last(e) {
       let step = this.data.step + 1;
       let size = this.data.size;
-      getCensus(step, size);
-      this.data.step = step;
+      try {
+        let data = wx.getStorageSync(size + step);
+        if (data) {
+          setChart(data.list, data.time);
+          this.data.step = step;
+        } else {
+          wx.showLoading({
+            title: '加载中...',
+          });
+          getCensus(step, size);
+          this.data.step = step;
+          wx.hideLoading();
+        }
+      } catch (e) {
+        console.log(e);
+      }
     },
     next(e) {
       let step = this.data.step - 1;
       let size = this.data.size;
       if (step >= 0) {
-        getCensus(step, size);
-        this.data.step = step;
+        try {
+          let data = wx.getStorageSync(size + step);
+          if (data) {
+            setChart(data.list, data.time);
+            this.data.step = step;
+          } else {
+            wx.showLoading({
+              title: '加载中...',
+            });
+            getCensus(step, size);
+            this.data.step = step;
+            wx.hideLoading();
+          }
+        } catch (e) {
+          console.log(e);
+        }
       } else {
         wx.showToast({
           title: '已是最新数据！',
