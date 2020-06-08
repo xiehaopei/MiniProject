@@ -1,6 +1,27 @@
 import * as echarts from '../ec-canvas/echarts.min';
 import { getChartData } from '../../service/getChartData';
 let chart = null;
+let option = {
+  color: ['#45b787'],
+  grid: [
+    {
+      x: '10%',
+      y: '15%',
+      width: '80%',
+      height: '38%',
+    },
+  ],
+  xAxis: {
+    data: [],
+  },
+  yAxis: {},
+  series: [
+    {
+      type: 'bar',
+      data: [],
+    },
+  ],
+};
 
 function initChart(canvas, width, height, dpr) {
   console.log('调用initChart');
@@ -10,27 +31,7 @@ function initChart(canvas, width, height, dpr) {
     devicePixelRatio: dpr, // new
   });
   canvas.setChart(chart);
-  let option = {
-    color: ['#45b787'],
-    grid: [
-      {
-        x: '10%',
-        y: '15%',
-        width: '80%',
-        height: '38%',
-      },
-    ],
-    xAxis: {
-      data: [],
-    },
-    yAxis: {},
-    series: [
-      {
-        type: 'bar',
-        data: [],
-      },
-    ],
-  };
+  chart.showLoading();
   chart.setOption(option);
   chart.hideLoading();
   return chart;
