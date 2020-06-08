@@ -141,12 +141,15 @@ Component({
 
     // 设置movable-view位移
     setXmove: function (index, xmove) {
-      let taskList = this.data.taskList;
-      taskList[index].xmove = xmove;
-
-      this.setData({
-        taskList: taskList,
-      });
+      try {
+        let taskList = this.data.taskList;
+        taskList[index].xmove = xmove;
+        this.setData({
+          taskList: taskList,
+        });
+      } catch (error) {
+        return error;
+      }
     },
 
     // 处理movable-view移动事件
@@ -196,36 +199,36 @@ Component({
     },
 
     // 删除产品
-    handleDeleteProduct: function (e) {
+    async handleDeleteProduct(e) {
       let id = e.currentTarget.dataset.id;
       let type = e.currentTarget.dataset.type;
       let taskList = this.data.taskList;
       let index = taskList.findIndex(item => item.id === id);
 
-      deleteTask([id]).then(
+      wx.showLoading({
+        title: '加载中...',
+      });
+      const { data: res } = await deleteTask([id]);
+      wx.hideLoading();
+      if (res.success) {
+        taskList.splice(index, 1);
+        if (type === 0) {
+          app.globalData.task = this.data.taskList;
+        } else {
+          app.globalData.finish_task = this.data.taskList;
+        }
+        if (type === 0) {
+          app.globalData.unfinish_sum = app.globalData.unfinish_sum - 1;
+        } else {
+          app.globalData.finish_sum = app.globalData.finish_sum - 1;
+        }
         wx.showToast({
           title: '删除成功！',
           icon: 'none',
           image: '',
           duration: 500,
           mask: false,
-        })
-      );
-      taskList.splice(index, 1);
-      if (type === 0) {
-        app.globalData.unfinish_sum = app.globalData.unfinish_sum - 1;
-      } else {
-        app.globalData.finish_sum = app.globalData.finish_sum - 1;
-      }
-      this.setData({
-        taskList,
-      });
-      if (taskList[index]) {
-        this.setXmove(index, 0);
-      }
-      if (taskList.length === 0) {
-        app.globalData.task = app.globalData.task;
-        app.globalData.finish_task = app.globalData.finish_task;
+        });
       }
     },
   },

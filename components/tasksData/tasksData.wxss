@@ -33,6 +33,6 @@
 
 .canvas {
   margin-top: 15rpx;
-  margin-left: 30rpx;
+  margin-left: 20rpx;
   height: 750rpx;
 }

@@ -43,11 +43,6 @@ async function getCensus(step, size) {
     key: size + step,
     data: res.data,
   });
-  if (size === 'month') {
-    for (let key in res.data.list) {
-      console.log(key);
-    }
-  }
   setChart(res.data.list, res.data.time);
 }
 
@@ -96,15 +91,12 @@ function setChart(list, time) {
             //如果类目项的文字大于1,
             for (let i = 0; i < value.length; i++) {
               let temp = ''; //每次截取的字符串
-              // let start = i; //开始截取的位置
-              // let end; //结束截取的位置
               if (value[i] === '日' && i !== value.length - 1) {
                 temp = value.substring(0, i + 1) + '\n';
               }
               if (value[i] === '至') {
                 temp = '  ' + '---' + '  \n' + value.substring(i + 1, value.length);
               }
-              // temp = value.substring(start, end) + '\n';
               ret += temp; //凭借最终的字符串
             }
             return ret;
